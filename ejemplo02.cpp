@@ -16,6 +16,7 @@ int main(int argc, char** argv){
     if(rank == 0){
         std::printf("total ranks:%d\n",nprocs);
         for(int i=0;i<100;i++){
+
             data[i]=i;
         }
         for(int i=0; i<nprocs; i++){

@@ -11,16 +11,19 @@ int sumar (int *tmp, int n) {
 
     return  suma;
 }
+
+
 //comunicacion sincrona
 int main(int argc, char **argv) {
     MPI_Init(&argc, &argv);
 
     int rank, nprocs;
 
+    int n;
+
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
     int data[100]; //vector de 100 elemento sin inicializar
-
 
     if (rank == 0) {
         std::printf("total ranks:%d\n", nprocs);

@@ -105,12 +105,7 @@ int main(int argc, char **argv) {
         MPI_Gather(MPI_IN_PLACE, 0, MPI_INT,
                    promedios_parciales.data(), 1, MPI_INT,
                    0, MPI_COMM_WORLD);
-        //for (int i = 1; i < nprocs; ++i) {
-            //MPI_Recv(&max_parciales[i], 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            //MPI_Recv(&min_parciales[i], 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-           // MPI_Recv(&promedios_parciales[i], 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-        //}
         max = maxNumero(max_parciales, nprocs);
         min = minNumero(min_parciales, nprocs);
         promedio = serial_promedio(promedios_parciales);
@@ -126,12 +121,10 @@ int main(int argc, char **argv) {
         MPI_Recv(data.data(), block_size, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
         int max_parcial = maxNumero(data.data(), block_size);
-        //MPI_Send(&max_parcial, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
         MPI_Gather(&max_parcial, 1, MPI_INT,
                    nullptr, 0, MPI_INT,
                    0, MPI_COMM_WORLD);
         int min_parcial = minNumero(data.data(), block_size);
-        //MPI_Send(&min_parcial, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
         MPI_Gather(&max_parcial, 1, MPI_INT,
                    nullptr, 0, MPI_INT,
                    0, MPI_COMM_WORLD);
@@ -139,7 +132,6 @@ int main(int argc, char **argv) {
         MPI_Gather(&promedios_parcial, 1, MPI_INT,
                    nullptr, 0, MPI_INT,
                    0, MPI_COMM_WORLD);
-        //MPI_Send(&promedios_parcial, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
 
 
 

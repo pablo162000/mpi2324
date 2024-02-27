@@ -81,7 +81,7 @@ int main(int argc, char** argv){
         std::vector<double> b_local(MATRIX_DIMENSION);
         std::vector<double> c_local(rows_per_rank);
         MPI_Scatter(nullptr, 0, MPI_DOUBLE,
-                    A_local.data(), MATRIX_DIMENSION*rows_per_rank,MPI_DOUBLE,
+                    A_local.data(), MATRIXD_IMENSION*rows_per_rank,MPI_DOUBLE,
                     0, MPI_COMM_WORLD);
 
         std::printf("RANK_%d: [%.0f..%.0f]\n", rank,A_local[0],A_local.back());
